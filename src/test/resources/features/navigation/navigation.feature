@@ -9,7 +9,7 @@ Feature: Navigation
 
   Scenario: Back Navigation
     When The manager clicks on Matrices
-    Then The title of the page should be Matrix Page
+    Then The manager should be on the Matrix Page
     When The manager clicks the browser back button
     Then The manager should be on the home page and the title of page is Home
     When The manager clicks on Test Cases
@@ -17,8 +17,8 @@ Feature: Navigation
     Then The manager should be on the home page and the title of page is Home
 
   Scenario Outline: All Links Viable
-    Then The manager should see links for Matrices, Test Cases, Defect Reporting and Defect Overview
-    When The manager clicks on <link>
+    Then The manager should see all links
+    When The manager clicks on the <link> link
     Then The title of page should be <title>
 
     Examples:

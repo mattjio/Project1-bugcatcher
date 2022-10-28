@@ -2,11 +2,11 @@ Feature: Test Cases
 
   Scenario: Add A Test Case
     Given The tester is on the test case dashboard
-    When The tester types "Description" into input with
+    When The tester types into "Description" input with
         """
         Verify that usernames cannot have illegal characters
         """
-    When The tester types "Steps" into input with
+    When The tester types into "Steps" input with
         """
         1. Go to create a new account page
         2. create several users with each username having 1 illegal character
