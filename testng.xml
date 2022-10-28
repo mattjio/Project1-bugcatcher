@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Login App Suite">
+    <test name="Login-Negative">
+        <classes>
+            <class name="com.rev.runners.LoginRunner" />
+        </classes>
+    </test>
+    <test name="nav">
+        <classes>
+            <class name="com.rev.runners.NavRunner" />
+        </classes>
+    </test><!-- Test -->
+</suite> <!-- Suite -->
