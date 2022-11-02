@@ -6,6 +6,8 @@ import com.rev.runners.TestCaseRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 public class TesterPageCases {
@@ -124,7 +126,119 @@ public class TesterPageCases {
     public void theTesterShouldBeOnTheCaseEditorForThatCase() {
         // Write code here that turns the phrase above into concrete actions
         String currentUrl = TestCaseRunner.driver.getCurrentUrl();
+        String caseId = TestCaseRunner.testPage.caseId.getText();
+        assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/caseeditor/" + caseId);
+    }
 
+    @Then("The fields should be uneditable")
+    public void theFieldsShouldBeUneditable() {
+        // Write code here that turns the phrase above into concrete actions
+        assert !TestCaseRunner.testPage.caseDescription.isEnabled();
+        assert !TestCaseRunner.testPage.caseSteps.isEnabled();
 
     }
+
+    @When("The tester clicks on the edit button")
+    public void the_tester_clicks_on_the_edit_button() throws InterruptedException {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.editCaseButton.click();
+        Thread.sleep(1000);
+    }
+    
+    @Then("The test case fields should be editable")
+    public void the_test_case_fields_should_be_editable() {
+        // Write code here that turns the phrase above into concrete actions
+        assert TestCaseRunner.testPage.descriptionInput.isEnabled();
+        assert TestCaseRunner.testPage.stepsInput.isEnabled();
+        throw new io.cucumber.java.PendingException();
+    }
+    
+    @When("The tester types in a new description into the description text area")
+    public void the_tester_types_in_a_new_description_into_the_description_text_area() {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.caseDescription.clear();
+        TestCaseRunner.testPage.caseDescription.sendKeys("Automated Test Case");
+        throw new io.cucumber.java.PendingException();
+    }
+    
+    @When("The tester types in a new steps into the steps text area")
+    public void the_tester_types_in_a_new_steps_into_the_steps_text_area() {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.caseSteps.clear();
+        TestCaseRunner.testPage.caseSteps.sendKeys("Automated Test Case");
+        throw new io.cucumber.java.PendingException();
+    }
+    
+    @When("The tester clicks on the automated check mark")
+    public void theTesterClicksOnTheAutomatedCheckMark() {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.automatedCheckBox.click();
+    }
+    
+    @When("The tester selects ryeGuy for performed from drop down")
+    public void theTesterSelectsRyeGuyForPerformedFromDropDown() {
+        // Write code here that turns the phrase above into concrete actions
+        Select select = new Select(TestCaseRunner.testPage.performedByDropdown);
+        select.selectByVisibleText("ryeGuy");
+    }
+    
+    @When("The tester selects FAIL for test result from drop down")
+    public void theTesterSelectsFAILForTestResultFromDropDown() {
+        // Write code here that turns the phrase above into concrete actions
+        Select select = new Select(TestCaseRunner.testPage.testResultDropdown);
+        select.selectByVisibleText("FAIL");
+    }
+
+
+    @When("The tester types in a new summary into the summary text area")
+    public void theTesterTypesInANewSummaryIntoTheSummaryTextArea() {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.summaryInput.clear();
+        TestCaseRunner.testPage.summaryInput.sendKeys("Automated Test Case");
+    }
+
+    @When("The tester clicks save on test case page")
+    public void theTesterClicksSaveOnTestCasePage() throws InterruptedException {
+        // Write code here that turns the phrase above into concrete actions
+        TestCaseRunner.testPage.saveCaseButton.click();
+        Thread.sleep(1000);
+    }
+
+
+    @Then("A confirmation prompt should appear")
+    public void aConfirmationPromptShouldAppear() {
+        // check if browser shows confirmation prompt
+        Alert alert = TestCaseRunner.driver.switchTo().alert();
+        assert alert.getText().equals("Are you sure you want to update the test case?");
+    }
+
+
+    @When("The tester clicks on Ok")
+    public void theTesterClicksOnOk() throws InterruptedException {
+        // Write code here that turns the phrase above into concrete actions
+        Alert alert = TestCaseRunner.driver.switchTo().alert();
+        alert.accept();
+        Thread.sleep(1000);
+    }
+
+    @Then("An alert says the test case has been saved")
+    public void anAlertSaysTheTestCaseHasBeenSaved() {
+        // Write code here that turns the phrase above into concrete actions
+        Alert alert = TestCaseRunner.driver.switchTo().alert();
+        assert alert.getText().equals("Test Case has been Saved");
+    }
+
+    //Scenario: Reset Test Case
+
+    @Given("the tester is on the test case editor for a specific test case")
+    public void theTesterIsOnTheTestCaseEditorForASpecificTestCase() throws InterruptedException {
+        NavRunner.driver.get("https://bugcatcher-jasdhir.coe.revaturelabs.com/?dev=16");
+        NavRunner.loginPage.username.sendKeys("cavalier89");
+        NavRunner.loginPage.password.sendKeys("alucard");
+        NavRunner.loginPage.loginButton.click();
+        Thread.sleep(1000);
+        NavRunner.homePage.testCasesLink.click();
+        Thread.sleep(1000);
+    }
+
 }
