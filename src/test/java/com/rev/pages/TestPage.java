@@ -31,7 +31,47 @@ public class TestPage {
     @FindBy(xpath = "//body/div[@id='root']/fieldset[1]/select[1]")
     public WebElement perfomedByDropdown;
 
+    @FindBy(xpath = "//body/div[@id='root']/form[1]/fieldset[1]/textarea[1]")
+    public WebElement descriptionInput;
+
+    @FindBy(xpath = "//body/div[@id='root']/form[1]/fieldset[1]/textarea[2]")
+    public WebElement stepsInput;
+
+    @FindBy(xpath = "//button[contains(text(),'Submit')]")
+    public WebElement submitButton;
+
+
+    @FindBy(xpath = "//tbody/tr[last()]/td[2]")
+    public WebElement lastTestCaseDescription;
+
+    @FindBy(xpath = "//tbody/tr[last()]/td[3]")
+    public WebElement lastTestCaseResult;
+
+    @FindBy(xpath = "//tbody/tr[last()]/td[4]/button")
+    public WebElement lastTestCaseDetails;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[4]/div[1]/div[1]/p[6]")
+    public WebElement performedBy;
+
+
     public String testCaseUrl = "https://bugcatcher-jasdhir.coe.revaturelabs.com/testcases";
+
+    @FindBy(xpath = "//body/div[4]/div[1]/div[1]")
+    public WebElement detailsModal;
+
+    @FindBy(xpath = "/html/body/div[4]/div/div/h3")
+    public WebElement caseTitle;
+    // split up case title into 2 parts
+    @FindBy(xpath = "/html/body/div[4]/div/div/h3/span[1]")
+    public WebElement caseTitlePart1;
+    @FindBy(xpath = "/html/body/div[4]/div/div/h3/span[2]")
+    public WebElement caseId;
+
+
+
+    
+    
+    
 
 
     public TestPage(WebDriver driver) {

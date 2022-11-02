@@ -22,10 +22,10 @@ public class LoginNegative {
         ;
     }
 
-    @When("The employee types in chomp! into the password input")
+    @When("The employee types in chomp into the password input")
     public void the_employee_types_in_chomp_into_the_password_input() {
         // Write code here that turns the phrase above into concrete actions
-        LoginRunner.loginPage.password.sendKeys("chomp!");
+        LoginRunner.loginPage.password.sendKeys("chomp");
 
     }
 
