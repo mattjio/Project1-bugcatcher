@@ -125,9 +125,7 @@ public class TesterPageCases {
     @Then("The Tester should be on the case editor for that case")
     public void theTesterShouldBeOnTheCaseEditorForThatCase() {
         // Write code here that turns the phrase above into concrete actions
-        String currentUrl = TestCaseRunner.driver.getCurrentUrl();
-        String caseId = TestCaseRunner.testPage.caseId.getText();
-        assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/caseeditor/" + caseId);
+        assert TestCaseRunner.testPage.descriptionTitle.isDisplayed();
     }
 
     @Then("The fields should be uneditable")
@@ -148,8 +146,8 @@ public class TesterPageCases {
     @Then("The test case fields should be editable")
     public void the_test_case_fields_should_be_editable() {
         // Write code here that turns the phrase above into concrete actions
-        assert TestCaseRunner.testPage.descriptionInput.isEnabled();
-        assert TestCaseRunner.testPage.stepsInput.isEnabled();
+        assert TestCaseRunner.testPage.caseDescription.isEnabled();
+        assert TestCaseRunner.testPage.caseSteps.isEnabled();
 
     }
     
@@ -224,6 +222,7 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         Alert alert = TestCaseRunner.driver.switchTo().alert();
         assert alert.getText().equals("Test Case has been Saved");
+        alert.accept();
     }
 
     //Scenario: Reset Test Case
@@ -241,9 +240,7 @@ public class TesterPageCases {
         Thread.sleep(1000);
         TestCaseRunner.testPage.editButton.click();
         Thread.sleep(1000);
-        String currentUrl = TestCaseRunner.driver.getCurrentUrl();
-        String caseId = TestCaseRunner.testPage.caseId.getText();
-        assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/caseeditor/" + caseId);
+        assert TestCaseRunner.testPage.descriptionTitle.isDisplayed();
     }
 
 

@@ -21,7 +21,7 @@ public class TestPage {
     @FindBy(xpath = "//button[contains(text(),'Edit')]")
     public WebElement editCaseButton;
 
-    @FindBy(xpath = "//button[contains(text(),'Edit')]")
+    @FindBy(xpath = "//button[contains(text(),'Reset')]")
     public WebElement resetCaseButton;
 
     @FindBy(xpath = "//button[contains(text(),'Save')]")
@@ -71,7 +71,7 @@ public class TestPage {
     public WebElement caseTitle;
 
     // caseid from case edit page
-    @FindBy(xpath = "//body/div[@id='root']/h1[1]/span[2]")
+    @FindBy(xpath = "//tbody/tr[last()]/td[1]")
     public WebElement caseId;
 
     // case editor page
@@ -83,6 +83,9 @@ public class TestPage {
 
     @FindBy(xpath = "//p[contains(text(),'UNEXECUTED')]")
     public WebElement testResult;
+
+    @FindBy(xpath = "//h6[contains(text(),'Description')]")
+    public WebElement descriptionTitle;
 
     @FindBy(className = "ReactModal__Content")
     public WebElement modalContainer;
