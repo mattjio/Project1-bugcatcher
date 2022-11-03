@@ -45,6 +45,24 @@ public class DefectReporterPage {
     @FindBy(xpath = "//button[contains(text(),'Close')]")
     public WebElement modalCloseButton;
 
+    @FindBy(xpath = "//body/div[@id='root']/table[1]")
+    public WebElement defectTable;
+
+    @FindBy(xpath = "//tbody/tr[last()]/td[3]/button[1]")
+    public WebElement lastSelectButtonDefectTable;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/h4[1]")
+    public WebElement boldDescription;
+
+    @FindBy(xpath = "//body/div[@id='root']/div[1]/input[1]")
+    public WebElement assignTesterInput;
+
+    @FindBy(xpath = "//button[contains(text(),'Assign')]")
+    public WebElement assignButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/span[1]/p[1]")
+    public WebElement lastDefectAssigned;
+
     public DefectReporterPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
