@@ -37,6 +37,38 @@ public class MatrixPage {
     @FindBy(xpath = "//body/div[@id='root']/ul[1]/li[last()]")
     public WebElement lastMatrix;
 
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/span[1]/button[1]")
+    public WebElement lastMatrixShowButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[6]/button[1]")
+    public WebElement lastMatrixEditButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[3]")
+    public WebElement lastMatrixTestCaseData;
+
+    @FindBy(xpath = "//body/div[@id='root']/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[2]/li[1]/input[1]")
+    public WebElement lastMatrixDefectInput;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[2]/li[1]/button[1]")
+    public WebElement lastMatrixDefectAddButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]")
+    public WebElement lastMatrixTestCaseAddButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[2]/li[1]/button[1]")
+    public WebElement lastMatrixDefectRemoveButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]")
+    public WebElement lastMatrixTestCaseRemoveButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/button[1]")
+    public WebElement lastMatrixSaveButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]")
+    public WebElement lastMatrixDefectData;
+
+    @FindBy(xpath = "//body/div[@id='root']/ul[1]/li[last()]/div[1]/div[1]/div[1]/ul[1]/li[1]/input[1]")
+    public WebElement lastMatrixTestCaseInput;
 
     public MatrixPage(WebDriver driver) {
         PageFactory.initElements(driver, this);

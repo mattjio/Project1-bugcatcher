@@ -19,5 +19,5 @@ Feature: Matrix
   Scenario: Update Test Cases
     Given A manager or tester has selected a matrix
     When A manager or tester adds or removes Test Cases
-    When A manager or tester confirms their changes
+    When A manager or tester confirms changes
     Then Then the matrix should saved
