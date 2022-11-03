@@ -7,8 +7,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TesterPageCases {
 
@@ -16,16 +20,16 @@ public class TesterPageCases {
     @Given("The tester is on the test case dashboard")
     public void the_tester_is_on_the_test_case_dashboard() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
-        NavRunner.driver.get("https://bugcatcher-jasdhir.coe.revaturelabs.com/?dev=16");
-        NavRunner.loginPage.username.sendKeys("cavalier89");
-        NavRunner.loginPage.password.sendKeys("alucard");
-        NavRunner.loginPage.loginButton.click();
+        TestCaseRunner.driver.get("https://bugcatcher-jasdhir.coe.revaturelabs.com/?dev=16");
+        TestCaseRunner.loginPage.username.sendKeys("cavalier89");
+        TestCaseRunner.loginPage.password.sendKeys("alucard");
+        TestCaseRunner.loginPage.loginButton.click();
         Thread.sleep(1000);
-        NavRunner.homePage.testCasesLink.click();
+        TestCaseRunner.homePage.testCasesLink.click();
         Thread.sleep(1000);
-        String currentUrl = NavRunner.driver.getCurrentUrl();
+        String currentUrl = TestCaseRunner.driver.getCurrentUrl();
         assert currentUrl.equals(TestCaseRunner.testPage.testCaseUrl);
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The tester types into \"Description\" input with")
@@ -33,7 +37,7 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         string = "Verify that usernames cannot have illegal characters";
         TestCaseRunner.testPage.descriptionInput.sendKeys(string);
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The tester types into \"Steps\" input with")
@@ -42,7 +46,7 @@ public class TesterPageCases {
         string = "Go to create a new account page\n2. create several users with each username having 1 illegal character\n3. Make sure none of them are successful\n" +
                 "illegal characters: $, #, /, <, >, (, ), ^";
         TestCaseRunner.testPage.stepsInput.sendKeys(string);
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The tester presses the submit button")
@@ -57,7 +61,7 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         String lastDescription = TestCaseRunner.testPage.lastTestCaseDescription.getText();
         assert lastDescription.equals("Verify that usernames cannot have illegal characters");
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("The test case result should say UNEXECUTED")
@@ -65,7 +69,7 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         String lastResult = TestCaseRunner.testPage.lastTestCaseResult.getText();
         assert lastResult.equals("UNEXECUTED");
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The tester presses on details")
@@ -78,22 +82,21 @@ public class TesterPageCases {
     @Then("The performed by field should say No One")
     public void the_performed_by_field_should_say_no_one() {
         // Write code here that turns the phrase above into concrete actions
-        String performedBy = TestCaseRunner.testPage.performedBy.getText();
-        assert performedBy.equals("No One");
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The tester presses the close button")
     public void the_tester_presses_the_close_button() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
-        TestCaseRunner.testPage.closeButton.click();
+        WebElement modalCloseButton = TestCaseRunner.testPage.modalContainer.findElement(By.xpath("//button[contains(text(),'Close')]"));
+        modalCloseButton.click();
         Thread.sleep(1000);
     }
 
     @Then("The Modal Should be closed")
     public void the_modal_should_be_closed() {
         // Write code here that turns the phrase above into concrete actions
-        assert !TestCaseRunner.testPage.detailsModal.isDisplayed();
+        assert TestCaseRunner.testPage.testCaseDashboard.isDisplayed();
     }
 
     //Scenario: Edit existing case
@@ -102,16 +105,13 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         TestCaseRunner.testPage.detailsButton.click();
         Thread.sleep(1000);
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("A test case modal should appear showing the case ID")
-    public void a_test_case_modal_should_appear_showing_the_case_ID() {
+    public void a_test_case_modal_should_appear_showing_the_case_ID() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
-        assert TestCaseRunner.testPage.detailsModal.isDisplayed();
-        assert TestCaseRunner.testPage.caseTitle.isDisplayed();
-
-        throw new io.cucumber.java.PendingException();
+        assert TestCaseRunner.testPage.modalContainer.isDisplayed();
     }
 
     @When("The Tester clicks on edit within the modal")
@@ -150,7 +150,7 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         assert TestCaseRunner.testPage.descriptionInput.isEnabled();
         assert TestCaseRunner.testPage.stepsInput.isEnabled();
-        throw new io.cucumber.java.PendingException();
+
     }
     
     @When("The tester types in a new description into the description text area")
@@ -158,7 +158,6 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         TestCaseRunner.testPage.caseDescription.clear();
         TestCaseRunner.testPage.caseDescription.sendKeys("Automated Test Case");
-        throw new io.cucumber.java.PendingException();
     }
     
     @When("The tester types in a new steps into the steps text area")
@@ -166,7 +165,6 @@ public class TesterPageCases {
         // Write code here that turns the phrase above into concrete actions
         TestCaseRunner.testPage.caseSteps.clear();
         TestCaseRunner.testPage.caseSteps.sendKeys("Automated Test Case");
-        throw new io.cucumber.java.PendingException();
     }
     
     @When("The tester clicks on the automated check mark")
@@ -232,13 +230,39 @@ public class TesterPageCases {
 
     @Given("the tester is on the test case editor for a specific test case")
     public void theTesterIsOnTheTestCaseEditorForASpecificTestCase() throws InterruptedException {
-        NavRunner.driver.get("https://bugcatcher-jasdhir.coe.revaturelabs.com/?dev=16");
-        NavRunner.loginPage.username.sendKeys("cavalier89");
-        NavRunner.loginPage.password.sendKeys("alucard");
-        NavRunner.loginPage.loginButton.click();
+        TestCaseRunner.driver.get("https://bugcatcher-jasdhir.coe.revaturelabs.com/?dev=16");
+        TestCaseRunner.loginPage.username.sendKeys("cavalier89");
+        TestCaseRunner.loginPage.password.sendKeys("alucard");
+        TestCaseRunner.loginPage.loginButton.click();
         Thread.sleep(1000);
-        NavRunner.homePage.testCasesLink.click();
+        TestCaseRunner.homePage.testCasesLink.click();
+        Thread.sleep(1000);
+        TestCaseRunner.testPage.lastTestCaseDetails.click();
+        Thread.sleep(1000);
+        TestCaseRunner.testPage.editButton.click();
+        Thread.sleep(1000);
+        String currentUrl = TestCaseRunner.driver.getCurrentUrl();
+        String caseId = TestCaseRunner.testPage.caseId.getText();
+        assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/caseeditor/" + caseId);
+    }
+
+
+    @When("The Tester clicks on the edit button")
+    public void theTesterClicksOnTheEditButton() throws InterruptedException {
+        TestCaseRunner.testPage.editCaseButton.click();
         Thread.sleep(1000);
     }
 
+
+    @When("The tester clicks on the reset button")
+    public void theTesterClicksOnTheResetButton() throws InterruptedException {
+        TestCaseRunner.testPage.resetCaseButton.click();
+        Thread.sleep(1000);
+    }
+
+
+    @Then("The fields should be populated to their old values")
+    public void theFieldsShouldBePopulatedToTheirOldValues() {
+        assert !TestCaseRunner.testPage.testResult.getText().equals("FAIL");
+    }
 }

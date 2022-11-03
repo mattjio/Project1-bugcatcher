@@ -11,4 +11,9 @@
             <class name="com.rev.runners.NavRunner" />
         </classes>
     </test><!-- Test -->
+    <test name="testerCases">
+        <classes>
+            <class name="com.rev.runners.TestCaseRunner" />
+        </classes>
+    </test><!-- Test -->
 </suite> <!-- Suite -->

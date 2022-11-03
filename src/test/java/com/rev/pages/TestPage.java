@@ -1,5 +1,7 @@
 package com.rev.pages;
 
+import com.rev.runners.TestCaseRunner;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,7 +55,7 @@ public class TestPage {
     @FindBy(xpath = "//tbody/tr[last()]/td[3]")
     public WebElement lastTestCaseResult;
 
-    @FindBy(xpath = "//tbody/tr[last()]/td[4]/button")
+    @FindBy(xpath = "//tbody/tr[last()]/td[4]/button[1]")
     public WebElement lastTestCaseDetails;
 
     @FindBy(xpath = "/html[1]/body[1]/div[4]/div[1]/div[1]/p[6]")
@@ -65,11 +67,11 @@ public class TestPage {
     @FindBy(xpath = "//body/div[4]/div[1]/div[1]")
     public WebElement detailsModal;
 
-    @FindBy(xpath = "/html/body/div[4]/div/div/h3")
+    @FindBy(xpath = "/html/body/div[4]/div/div/h3[1]")
     public WebElement caseTitle;
 
     // caseid from case edit page
-    @FindBy(xpath = "//body/div[@id='root']/h1[1]/span[3]")
+    @FindBy(xpath = "//body/div[@id='root']/h1[1]/span[2]")
     public WebElement caseId;
 
     // case editor page
@@ -79,12 +81,14 @@ public class TestPage {
     @FindBy(xpath = "/html[1]/body[1]/div[1]/fieldset[1]/textarea[2]")
     public WebElement caseSteps;
 
+    @FindBy(xpath = "//p[contains(text(),'UNEXECUTED')]")
+    public WebElement testResult;
 
+    @FindBy(className = "ReactModal__Content")
+    public WebElement modalContainer;
 
-    
-    
-    
-
+    @FindBy(xpath = "//h1[contains(text(),'Test Case Dashboard')]")
+    public WebElement testCaseDashboard;
 
     public TestPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
