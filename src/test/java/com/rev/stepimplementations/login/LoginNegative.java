@@ -60,10 +60,11 @@ public class LoginNegative {
     }
 
     @Then("The employee should see an alert saying no user with that username found")
-    public void theEmployeeShouldSeeAnAlertSayingNoUserWithThatUsernameFound() {
+    public void theEmployeeShouldSeeAnAlertSayingNoUserWithThatUsernameFound() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
+        LoginRunner.loginPage.loginButton.click();
+        Thread.sleep(1000);
         String actualAlertText = LoginRunner.driver.switchTo().alert().getText();
-        System.out.println(actualAlertText);
         Assert.assertEquals(actualAlertText, "Username not found");
     }
 }

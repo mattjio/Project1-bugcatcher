@@ -8,7 +8,9 @@ import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 @CucumberOptions(
         features = "src/test/resources/features/defect",
@@ -23,7 +25,7 @@ public class DefectRunner extends AbstractTestNGCucumberTests {
     public static HomePage homePage;
     public static DefectReporterPage defectPage;
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -32,7 +34,7 @@ public class DefectRunner extends AbstractTestNGCucumberTests {
         defectPage = new DefectReporterPage(driver);
     }
 
-    @AfterClass
+    @AfterMethod
     public void teardown() {
         driver.quit();
     }

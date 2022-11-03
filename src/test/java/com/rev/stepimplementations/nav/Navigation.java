@@ -84,7 +84,7 @@ public class Navigation {
     public void the_manager_clicks_on_the_matrices_link() {
         // Write code here that turns the phrase above into concrete actions
         NavRunner.homePage.matricesLink.click();
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("The title of page should be Matrix Overview")
@@ -93,14 +93,13 @@ public class Navigation {
         Thread.sleep(1000);
         String currentUrl = NavRunner.driver.getCurrentUrl();
         assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/matrices");
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("The manager clicks on the Test Cases link")
     public void the_manager_clicks_on_the_test_cases_link() {
         // Write code here that turns the phrase above into concrete actions
         NavRunner.homePage.testCasesLink.click();
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @Then("The title of page should be Test Case Overview")
@@ -109,14 +108,14 @@ public class Navigation {
         Thread.sleep(1000);
         String currentUrl = NavRunner.driver.getCurrentUrl();
         assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/testcases");
-        throw new io.cucumber.java.PendingException();
+
     }
 
     @When("The manager clicks on the Report a Defect link")
-    public void the_manager_clicks_on_the_report_a_defect_link() {
+    public void the_manager_clicks_on_the_report_a_defect_link() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
         NavRunner.homePage.reportDefectLink.click();
-        throw new io.cucumber.java.PendingException();
+        Thread.sleep(1000);
     }
 
     @Then("The title of page should be Report a Defect")
@@ -125,14 +124,12 @@ public class Navigation {
         Thread.sleep(1000);
         String currentUrl = NavRunner.driver.getCurrentUrl();
         assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/defectreporter");
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("The manager clicks on the Defect Overview link")
     public void the_manager_clicks_on_the_defect_overview_link() {
         // Write code here that turns the phrase above into concrete actions
         NavRunner.homePage.defectOverviewLink.click();
-        throw new io.cucumber.java.PendingException();
     }
 
     @Then("The title of page should be Defect Overview")
@@ -141,7 +138,15 @@ public class Navigation {
         Thread.sleep(1000);
         String currentUrl = NavRunner.driver.getCurrentUrl();
         assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/defectoverview");
-        throw new io.cucumber.java.PendingException();
+
     }
+
+    @Then("The title of page should be Defect Reporter")
+    public void the_title_of_page_should_be_defect_reporter() {
+        // Write code here that turns the phrase above into concrete actions
+        String currentUrl = NavRunner.driver.getCurrentUrl();
+        assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/defectreporter");
+    }
+
 
 }
