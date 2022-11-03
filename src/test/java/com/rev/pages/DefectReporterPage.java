@@ -63,6 +63,16 @@ public class DefectReporterPage {
     @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/span[1]/p[1]")
     public WebElement lastDefectAssigned;
 
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/span[1]/p[1]/b[2]")
+    public WebElement lastDefectStatus;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/div[1]/span[1]/button[1]")
+    public WebElement lastDefectChangeStatusButton;
+
+    @FindBy(xpath = "//body[1]/div[1]/ul[1]/li[last()]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]")
+    public WebElement acceptedStatusButton;
+
+
     public DefectReporterPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
