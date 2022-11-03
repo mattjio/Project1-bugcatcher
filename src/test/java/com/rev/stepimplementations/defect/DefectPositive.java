@@ -12,6 +12,8 @@ import java.awt.*;
 
 public class DefectPositive {
 
+    // DON'T TOUCH THIS
+
     @Given("The employee is on the Defect Reporter Page")
     public void theEmployeeIsOnTheDefectReporterPage() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
@@ -19,9 +21,9 @@ public class DefectPositive {
         DefectRunner.loginPage.username.sendKeys("g8tor");
         DefectRunner.loginPage.password.sendKeys("chomp!");
         DefectRunner.loginPage.loginButton.click();
-        wait(1000);
+        Thread.sleep(1000);
         DefectRunner.homePage.reportDefectLink.click();
-        wait(1000);
+        Thread.sleep(1000);
         String currentUrl = DefectRunner.driver.getCurrentUrl();
         assert currentUrl.equals("https://bugcatcher-jasdhir.coe.revaturelabs.com/defectreporter");
     }
@@ -31,24 +33,28 @@ public class DefectPositive {
         DefectRunner.defectPage.dateInput.sendKeys("11032022");
     }
 
-    @When("The employee types in Description with")
-    public void theEmployeeTypesInDescriptionWith() throws InterruptedException {
-        DefectRunner.defectPage.descriptionInput.sendKeys(" Users are able to create multiple accounts using the same username but\n" +
-                "with a different password.");
-        wait(1000);
+
+    @When("The employee types in \"Description\" with")
+    public void the_employee_types_in_with(String string) throws InterruptedException {
+        // Write code here that turns the phrase above into concrete actions
+        string = " Users are able to create multiple accounts using the same username but\n" +
+                "with a different password.";
+        DefectRunner.defectPage.descriptionInput.sendKeys(string);
+        Thread.sleep(1000);
+
     }
 
-    @When("The employee types in Steps with")
-    public void theEmployeeTypesInStepsWith() throws InterruptedException {
-        DefectRunner.defectPage.stepsInput.sendKeys("1. User creates a new account\n" +
+    @When("The employee types in \"Steps\" with")
+    public void theEmployeeTypesInStepsWith(String string) throws InterruptedException {
+        string = "1. User creates a new account\n" +
                 "2. User reloads the new user page\n" +
-                "3. User creates an account with same username but different password");
-        wait(1000);
+                "3. User creates an account with same username but different password";
+        DefectRunner.defectPage.stepsInput.sendKeys(string);
+        Thread.sleep(1000);
     }
 
     @When("The employee selects high priority")
     public void theEmployeeSelectsHighPriority() throws InterruptedException {
-        wait(1000);
         String currentPriority = DefectRunner.defectPage.priorityValue.getText();
         assert currentPriority.equals("High");
     }
@@ -57,9 +63,9 @@ public class DefectPositive {
     public void theEmployeeSelectsLowSeverity() throws InterruptedException {
         // click on severity slider
         Actions move = new Actions(DefectRunner.driver);
-        Action action = move.dragAndDropBy(DefectRunner.defectPage.severitySlider, 0, 0).build();
+        Action action = move.dragAndDropBy(DefectRunner.defectPage.severitySlider, -50, 0).build();
         action.perform();
-        wait(1000);
+        Thread.sleep(1000);
         String currentSeverity = DefectRunner.defectPage.severityValue.getText();
         assert currentSeverity.equals("LOW");
     }
@@ -67,7 +73,7 @@ public class DefectPositive {
     @When("The employee clicks the report button")
     public void theEmployeeClicksTheReportButton() throws InterruptedException {
         DefectRunner.defectPage.reportButton.click();
-        wait(1000);
+        Thread.sleep(1000);
     }
 
     @Then("There should be a confirmation box")
@@ -81,24 +87,24 @@ public class DefectPositive {
     public void theEmployeeClicksOk() throws InterruptedException {
         Alert alert = DefectRunner.driver.switchTo().alert();
         alert.accept();
-        wait(1000);
+        Thread.sleep(1000);
     }
 
     @Then("A modal should appear with a Defect ID")
     public void aModalShouldAppearWithADefectID() {
         // switch to modal
-        DefectRunner.driver.switchTo().frame(DefectRunner.defectPage.modalFrame);
-        assert DefectRunner.defectPage.modalTitle.isDisplayed();
+        assert DefectRunner.defectPage.modalContainer.isDisplayed();
     }
 
     @When("The employee clicks close")
     public void theEmployeeClicksClose() throws InterruptedException {
         DefectRunner.defectPage.modalCloseButton.click();
-        wait(1000);
+        Thread.sleep(1000);
     }
 
     @Then("The modal should disappear")
     public void theModalShouldDisappear() {
+        assert DefectRunner.defectPage.defectReporterTitle.isDisplayed();
     }
 
 }

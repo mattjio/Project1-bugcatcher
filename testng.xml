@@ -16,4 +16,9 @@
             <class name="com.rev.runners.TestCaseRunner" />
         </classes>
     </test><!-- Test -->
+    <test name="defects">
+        <classes>
+            <class name="com.rev.runners.DefectRunner" />
+        </classes>
+    </test>
 </suite> <!-- Suite -->

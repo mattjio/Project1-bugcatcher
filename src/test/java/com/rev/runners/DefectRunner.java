@@ -3,7 +3,6 @@ package com.rev.runners;
 import com.rev.pages.DefectReporterPage;
 import com.rev.pages.HomePage;
 import com.rev.pages.LoginPage;
-import com.rev.pages.TestPage;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;

@@ -32,11 +32,15 @@ public class DefectReporterPage {
 
     @FindBy(xpath = "//button[contains(text(),'Report')]")
     public WebElement reportButton;
-    @FindBy(xpath = "//body/div[4]/div[1]/div[1]")
-    public WebElement modalFrame;
+
+    @FindBy(className = "ReactModal__Content")
+    public WebElement modalContainer;
 
     @FindBy(xpath = "//body[1]/div[4]/div[1]/div[1]/h4[1]")
     public WebElement modalTitle;
+
+    @FindBy(xpath = "//h1[contains(text(),'Defect Reporter')]")
+    public WebElement defectReporterTitle;
 
     @FindBy(xpath = "//button[contains(text(),'Close')]")
     public WebElement modalCloseButton;
